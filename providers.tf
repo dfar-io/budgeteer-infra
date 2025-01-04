@@ -6,23 +6,23 @@ provider "google" {
 }
 
 terraform {
-    required_version = "1.9.6"
+    required_version = "~> 1.10.3"
     required_providers {
         google = {
             source  = "hashicorp/google"
-            version = "6.14.1"
+            version = "~> 6.14.1"
         }
         random = {
             source  = "hashicorp/random"
-            version = "3.6.3"
+            version = "~> 3.6.3"
         }
         github = {
             source  = "integrations/github"
-            version = "6.4.0"
+            version = "~> 6.4.0"
         }
         null = {
             source  = "hashicorp/null"
-            version = "3.2.3"
+            version = "~> 3.2.3"
         }
     }
     backend "gcs" {

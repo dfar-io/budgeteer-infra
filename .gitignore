@@ -1,51 +1,39 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# https://github.com/github/gitignore/blob/main/Terraform.gitignore
 
-# CodeClimate CLI
-codeclimate-master
+# Local .terraform directories
+**/.terraform/*
 
-# Terraform
-tf/*.terraform*
+# .tfstate files
+*.tfstate
+*.tfstate.*
 
-# For manual deployments
-build-output.zip
+# Crash log files
+crash.log
+crash.*.log
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# Exclude all .tfvars files, which are likely to contain sensitive data, such as
+# password, private keys, and other secrets. These should not be part of version 
+# control as they are data points which are potentially sensitive and subject 
+# to change depending on the environment.
+*.tfvars
+*.tfvars.json
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
 
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# Ignore transient lock info files created by terraform apply
+.terraform.tfstate.lock.info
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+# Include override files you do wish to add to version control using negated pattern
+# !example_override.tf
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
+# example: *tfplan*
 
-# System files
-.DS_Store
-Thumbs.db
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
