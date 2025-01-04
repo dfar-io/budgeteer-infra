@@ -15,8 +15,6 @@ jobs:
 
     - uses: terraform-linters/setup-tflint@v4
       name: Setup TFLint
-      with:
-        tflint_version: v0.53.0
 
     - name: Show version
       run: tflint --version
@@ -32,6 +30,12 @@ jobs:
 
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v3
+
+    - name: "Authenticate to GCP for terraform commands"
+      uses: 'google-github-actions/auth@v2'
+      with:
+        project_id: 'dfar55'
+        workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
 
     - run: terraform init
 
