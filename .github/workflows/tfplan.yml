@@ -38,8 +38,9 @@ jobs:
     - name: "Authenticate to GCP for terraform commands"
       uses: 'google-github-actions/auth@v2'
       with:
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+        # is this necessary?
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
 
     - run: terraform init
 

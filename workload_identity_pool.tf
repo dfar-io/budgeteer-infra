@@ -50,9 +50,17 @@ resource "google_iam_workload_identity_pool_provider" "github_actions" {
   }
 }
 
-# I would prefer this to be by repo but I have problems when trying to authenticate using non-main branches
-resource "google_project_iam_member" "storage_access" {
+# storage bucket access for budgeteer-ui
+resource "google_project_iam_member" "storage_access_budgeteer" {
   project = google_project.project.project_id
+  role    = "roles/storage.objectUser"
+  member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer"
+}
+
+# Terraform state access
+resource "google_project_iam_member" "storage_access_budgeteer-infra" {
+  # needs to point to the parent project with tf state information
+  project = "dfar55"
   role    = "roles/storage.objectUser"
   member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra"
 }
