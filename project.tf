@@ -10,7 +10,7 @@ resource "random_string" "project-prefix" {
 }
 
 resource "google_project" "project" {
-  name       = "Budgeteer"
+  name       = "budgeteer"
   project_id = "budgeteer-${random_string.project-prefix.result}"
   # Use organization provided when creating GCP org.
   org_id     = 174756564188
