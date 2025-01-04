@@ -5,6 +5,11 @@ provider "google" {
     region  = "us-east4"
 }
 
+provider "github" {
+    # needed for org secret
+    owner =  "dfar-io"
+}
+
 terraform {
     required_version = "~> 1.10.3"
     required_providers {
