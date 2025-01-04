@@ -59,7 +59,7 @@ resource "google_project_iam_member" "storage_access_budgeteer" {
 resource "google_project_iam_member" "storage_access_budgeteer_infra" {
   project = google_project.project.project_id
   role    = "roles/storage.objectUser"
-  member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra"
+  member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra:tfplan"
 }
 
 resource "github_actions_secret" "workload_identity_pool_provider_name_budgeteer" {
