@@ -50,10 +50,16 @@ resource "google_iam_workload_identity_pool_provider" "github_actions" {
   }
 }
 
-resource "google_project_iam_member" "storage_access" {
+resource "google_project_iam_member" "storage_access_budgeteer" {
   project = google_project.project.project_id
   role    = "roles/storage.objectUser"
   member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer"
+}
+
+resource "google_project_iam_member" "storage_access_budgeteer_infra" {
+  project = google_project.project.project_id
+  role    = "roles/storage.objectUser"
+  member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra"
 }
 
 # prefer this but I get
