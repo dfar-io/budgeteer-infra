@@ -1,4 +1,4 @@
-name: TFLint
+name: TFPlan
 on:
   push:
     branches: [ "main" ]
@@ -29,3 +29,7 @@ jobs:
 
     - name: Run TFLint
       run: tflint -f compact
+
+    - run: terraform init
+    - run: terraform plan -detailed-exitcode
+
