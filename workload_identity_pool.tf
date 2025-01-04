@@ -20,7 +20,7 @@ resource "null_resource" "delay" {
     command = "sleep 90"
   }
   triggers = {
-    "before" = "${null_resource.before.id}"
+    "before" = null_resource.before.id
   }
 }
 resource "null_resource" "after" {
