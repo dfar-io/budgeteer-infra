@@ -1,5 +1,5 @@
 # https://cloud.google.com/docs/terraform/resource-management/store-state
-# just created the bucket manually and link to it via terraform init
+
 
 provider "google" {
     region  = "us-east4"
@@ -31,6 +31,7 @@ terraform {
         }
     }
     backend "gcs" {
+        # just created the bucket manually in a different project
         bucket = "budgeteer-tf-state"
     }
 }

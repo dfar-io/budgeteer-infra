@@ -57,13 +57,13 @@ resource "google_project_iam_member" "storage_access_budgeteer" {
   member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer"
 }
 
-# Terraform state access
-resource "google_project_iam_member" "storage_access_budgeteer-infra" {
-  # needs to point to the parent project with tf state information
-  project = "dfar55"
-  role    = "roles/storage.objectUser"
-  member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra"
-}
+# # Terraform state access
+# resource "google_project_iam_member" "storage_access_budgeteer-infra" {
+#   # needs to point to the parent project with tf state information
+#   project = "dfar55"
+#   role    = "roles/storage.objectUser"
+#   member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra"
+# }
 
 resource "github_actions_secret" "workload_identity_pool_provider_name_budgeteer" {
   repository       = "budgeteer"
