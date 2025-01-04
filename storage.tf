@@ -3,7 +3,7 @@
 resource "google_storage_bucket" "static-site" {
   project       = google_project.project.project_id
   name          = "b.dfar.io"
-  location      = local.region
+  location      = "us-east4" # why doesn't this use the provider default?
   force_destroy = true
 
   uniform_bucket_level_access = true

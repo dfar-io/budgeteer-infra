@@ -38,7 +38,7 @@ jobs:
     - name: "Authenticate to GCP for terraform commands"
       uses: 'google-github-actions/auth@v2'
       with:
-        project_id: 'dfar55'
+        project_id: 'budgeteer-5vcl6'
         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
 
     - run: terraform init
