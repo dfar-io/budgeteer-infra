@@ -54,7 +54,7 @@ resource "google_iam_workload_identity_pool_provider" "github_actions" {
 resource "google_project_iam_member" "storage_access" {
   project = google_project.project.project_id
   role    = "roles/storage.objectUser"
-  member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository_owner/dfar-io"
+  member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra"
 }
 
 resource "github_actions_secret" "workload_identity_pool_provider_name_budgeteer" {
