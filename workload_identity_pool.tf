@@ -62,15 +62,6 @@ resource "google_project_iam_member" "storage_access_budgeteer_infra" {
   member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra"
 }
 
-# prefer this but I get
-# Error: GET https://api.github.com/orgs/dfar-io/actions/secrets/public-key: 404 Not Found []
-#
-# resource "github_actions_organization_secret" "workload_identity_pool_provider_name" {
-#   secret_name      = "WORKLOAD_IDENTITY_PROVIDER"
-#   visibility       = "all"
-#   plaintext_value  = google_iam_workload_identity_pool_provider.github_actions.name
-# }
-
 resource "github_actions_secret" "workload_identity_pool_provider_name_budgeteer" {
   repository       = "budgeteer"
   secret_name      = "WORKLOAD_IDENTITY_PROVIDER"
@@ -82,3 +73,12 @@ resource "github_actions_secret" "workload_identity_pool_provider_name_budgeteer
   secret_name      = "WORKLOAD_IDENTITY_PROVIDER"
   plaintext_value  = google_iam_workload_identity_pool_provider.github_actions.name
 }
+
+# prefer this but I get
+# Error: GET https://api.github.com/orgs/dfar-io/actions/secrets/public-key: 404 Not Found []
+#
+# resource "github_actions_organization_secret" "workload_identity_pool_provider_name" {
+#   secret_name      = "WORKLOAD_IDENTITY_PROVIDER"
+#   visibility       = "all"
+#   plaintext_value  = google_iam_workload_identity_pool_provider.github_actions.name
+# }
