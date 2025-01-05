@@ -5,7 +5,7 @@ locals {
 resource "google_storage_bucket_iam_member" "storage_access_infra" {
   # need to use state bucket in different project
   bucket = "budgeteer-tf-state"
-  role   = "roles/storage.objectUser"
+  role   = "roles/storage.legacyBucketOwner"
   member = local.infra_principal
 }
 
