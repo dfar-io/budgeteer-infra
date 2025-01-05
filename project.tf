@@ -31,3 +31,8 @@ resource "github_actions_secret" "gcp_project_id_budgeteer_infra" {
   secret_name      = "GCP_PROJECT_ID"
   plaintext_value  = google_project.project.project_id
 }
+
+resource "google_project_service" "billing" {
+  project = google_project.project.project_id
+  service = "cloudbilling.googleapis.com"
+}

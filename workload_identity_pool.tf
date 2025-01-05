@@ -52,7 +52,7 @@ resource "google_iam_workload_identity_pool_provider" "github_actions" {
 
 resource "google_storage_bucket_iam_member" "storage_access_budgeteer" {
   bucket = google_storage_bucket.static-site.name
-  role   = "roles/storage.objectUser"
+  role   = "roles/storage.objectAdmin"
   member = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra"
 }
 
