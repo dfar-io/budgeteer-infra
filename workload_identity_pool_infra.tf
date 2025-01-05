@@ -9,9 +9,9 @@ resource "google_storage_bucket_iam_member" "storage_access_infra" {
   member = local.infra_principal
 }
 
-resource "google_billing_account_iam_member" "billing_access_infra" {
+resource "google_organization_iam_member" "billing_access_infra" {
   # use central billing acct
-  billing_account_id = data.google_billing_account.acct.id
-  role    = "roles/billing.admin"
+  org_id  = local.org_id
+  role    = "roles/billing.user"
   member  = local.infra_principal
 }
