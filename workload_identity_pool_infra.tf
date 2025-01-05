@@ -9,6 +9,7 @@ resource "google_storage_bucket_iam_member" "storage_access_infra" {
   member = local.infra_principal
 }
 
+# look for a more granular pre-defined role for this
 resource "google_organization_iam_member" "billing_viewer_infra" {
   org_id = local.org_id
   role    = "roles/viewer"
