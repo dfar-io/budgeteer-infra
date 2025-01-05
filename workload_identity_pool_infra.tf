@@ -26,3 +26,23 @@ resource "google_project_iam_member" "viewer_infra" {
   role    = "roles/viewer"
   member  = local.infra_principal
 }
+
+resource "google_project_service" "billing" {
+  project = google_project.project.project_id
+  service = "cloudbilling.googleapis.com"
+}
+
+resource "google_project_service" "resource_manager" {
+  project = google_project.project.project_id
+  service = "cloudresourcemanager.googleapis.com"
+}
+
+resource "google_project_service" "service_usage" {
+  project = google_project.project.project_id
+  service = "serviceusage.googleapis.com"
+}
+
+resource "google_project_service" "iam" {
+  project = google_project.project.project_id
+  service = "iam.googleapis.com"
+}
