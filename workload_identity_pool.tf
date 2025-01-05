@@ -50,22 +50,16 @@ resource "google_iam_workload_identity_pool_provider" "github_actions" {
   }
 }
 
-# storage bucket access for budgeteer-ui
-resource "google_project_iam_member" "storage_access_budgeteer" {
-  project = google_project.project.project_id
-  role    = "roles/storage.objectUser"
-  member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer"
+resource "google_storage_bucket_iam_member" "storage_access_budgeteer" {
+  bucket = google_storage_bucket.static-site.name
+  role   = "roles/storage.objectUser"
+  member = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra"
 }
 
-# Terraform state access - for some reason these need to be legacy
-# resource "google_storage_bucket_iam_member" "storage_access_budgeteer-infra" {
-#   bucket = "budgeteer-tf-state"
-#   role   = "roles/storage.legacyBucketAdmin"
-#   member = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra"
-# }
-resource "google_storage_bucket_iam_member" "storage_access_budgeteer-infra_2" {
+resource "google_storage_bucket_iam_member" "storage_access_budgeteer-infra" {
+  # need to use state bucket in different project
   bucket = "budgeteer-tf-state"
-  role   = "roles/storage.admin"
+  role   = "roles/storage.objectUser"
   member = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra"
 }
 

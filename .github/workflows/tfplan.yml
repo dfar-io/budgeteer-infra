@@ -39,8 +39,6 @@ jobs:
       uses: 'google-github-actions/auth@v2'
       with:
         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-        # is this necessary?
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
 
     - run: terraform init
 
