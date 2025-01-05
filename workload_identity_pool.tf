@@ -56,6 +56,7 @@ resource "google_project_iam_member" "storage_access_budgeteer" {
   member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer"
 }
 
+# Seeing issues here - might just use a PAT and have tf plan use the token
 resource "github_actions_secret" "workload_identity_pool_provider_name_budgeteer" {
   repository       = "budgeteer"
   secret_name      = "WORKLOAD_IDENTITY_PROVIDER"
