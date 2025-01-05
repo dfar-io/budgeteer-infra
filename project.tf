@@ -32,7 +32,7 @@ resource "google_project_service" "billing" {
   service = "cloudbilling.googleapis.com"
 }
 
-# resource "google_project_service" "resource_manager" {
-#   project = google_project.project.project_id
-#   service = "cloudresourcemanager.googleapis.com"
-# }
+resource "google_project_service" "resource_manager" {
+  project = google_project.project.project_id
+  service = "cloudresourcemanager.googleapis.com"
+}

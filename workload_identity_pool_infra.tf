@@ -9,6 +9,8 @@ resource "google_storage_bucket_iam_member" "storage_access_infra" {
   member = local.infra_principal
 }
 
+# NEED TO RESOLVE THIS
+# 
 # resource "google_organization_iam_member" "billing_access_infra" {
 #   org_id  = local.org_id
 #   role    = "roles/billing.user"
