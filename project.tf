@@ -1,8 +1,3 @@
-data "google_billing_account" "acct" {
-  display_name = "My Billing Account"
-  open         = true
-}
-
 resource "random_string" "project-prefix" {
   length = 5
   special = false
