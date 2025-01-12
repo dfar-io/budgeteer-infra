@@ -20,6 +20,12 @@ resource "google_organization_iam_member" "billing_viewer_infra" {
   role    = "roles/billing.viewer"
   member  = local.infra_principal
 }
+# Need this for IAN roles in organization
+resource "google_organization_iam_member" "security_reviewer_infra" {
+  org_id  = local.org_id
+  role    = "roles/iam.securityReviewer"
+  member  = local.infra_principal
+}
 
 resource "google_project_iam_member" "viewer_infra" {
   project = google_project.project.project_id
