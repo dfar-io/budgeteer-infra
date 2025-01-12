@@ -20,7 +20,8 @@ resource "google_organization_iam_member" "billing_viewer_infra" {
   role    = "roles/billing.viewer"
   member  = local.infra_principal
 }
-# Need this for IAN roles in organization
+# Need this to view IAM roles for organization
+# https://github.com/terraform-google-modules/terraform-example-foundation/issues/558
 resource "google_organization_iam_member" "security_reviewer_infra" {
   org_id  = local.org_id
   role    = "roles/iam.securityReviewer"
