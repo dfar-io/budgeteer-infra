@@ -3,7 +3,7 @@
 resource "google_storage_bucket" "static-site" {
   project       = google_project.project.project_id
   name          = "b.dfar.io"
-  location      = local.region
+  location      = "us-east4" # this is required for some reason
   force_destroy = true
 
   uniform_bucket_level_access = true
