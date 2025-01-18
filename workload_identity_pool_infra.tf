@@ -53,3 +53,9 @@ resource "google_project_service" "iam" {
   project = google_project.project.project_id
   service = "iam.googleapis.com"
 }
+
+resource "github_actions_secret" "workload_identity_pool_provider_name_budgeteer_infra" {
+  repository       = "budgeteer-infra"
+  secret_name      = "WORKLOAD_IDENTITY_PROVIDER"
+  plaintext_value  = google_iam_workload_identity_pool_provider.github_actions.name
+}
