@@ -2,6 +2,8 @@ resource "google_cloud_run_v2_service" "ui" {
   name     = "ui"
   project  = google_project.project.project_id
   location = local.location
+  // allow for seamless destroy/apply
+  deletion_protection = false
 
   template {
     containers {
@@ -26,19 +28,12 @@ resource "google_cloud_run_domain_mapping" "ui" {
   }
 }
 
-data "google_iam_policy" "all_users" {
-  binding {
-    role = "roles/run.invoker"
-    members = ["allUsers"]
-  }
-}
-
-resource "google_cloud_run_service_iam_policy" "public" {
-    location = local.location
-    project  = google_project.project.project_id
-    service  = google_cloud_run_v2_service.ui.name
-
-    policy_data = data.google_iam_policy.all_users.policy_data
+resource "google_cloud_run_service_iam_member" "public_access" {
+  location = google_cloud_run_v2_service.ui.location
+  project  = google_cloud_run_v2_service.ui.project
+  service  = google_cloud_run_v2_service.ui.name
+  role     = "roles/run.invoker"
+  member   = "allUsers"
 }
 
 resource "google_project_service" "cloud_run_admin" {
