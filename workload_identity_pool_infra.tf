@@ -56,8 +56,9 @@ resource "github_actions_secret" "workload_identity_pool_provider_name_budgeteer
 
 # Need to have Project > Editor for domain mappings
 # https://cloud.google.com/run/docs/reference/iam/roles
+# nope this didn't work either.... what else could it be?
 resource "google_project_iam_member" "cloud_run" {
-  project  = google_cloud_run_v2_service.ui.project
+  project  = google_project.project.project_id
   role     = "roles/editor"
   member   = local.infra_principal
 }
