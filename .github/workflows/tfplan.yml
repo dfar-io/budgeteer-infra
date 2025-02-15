@@ -35,13 +35,10 @@ jobs:
       uses: 'google-github-actions/auth@v2'
       with:
         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-        # do we need this for cloud run domain mappings?
-        export_environment_variables: true
 
     - run: terraform init
     - run: terraform validate -no-color
-    - name: Terraform Plan
-      run: terraform plan -detailed-exitcode
+    - run: terraform plan -detailed-exitcode
       env:
         # manual token with repo rights to allow GitHub secrets to be checked
         GITHUB_TOKEN: ${{ secrets.PAT }}
