@@ -28,11 +28,11 @@ resource "google_organization_iam_member" "security_reviewer_infra" {
   member  = local.infra_principal
 }
 
-resource "google_project_iam_member" "viewer_infra" {
-  project = google_project.project.project_id
-  role    = "roles/viewer"
-  member  = local.infra_principal
-}
+# resource "google_project_iam_member" "viewer_infra" {
+#   project = google_project.project.project_id
+#   role    = "roles/viewer"
+#   member  = local.infra_principal
+# }
 
 resource "google_project_service" "billing" {
   project = google_project.project.project_id
