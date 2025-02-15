@@ -54,11 +54,10 @@ resource "github_actions_secret" "workload_identity_pool_provider_name_budgeteer
   plaintext_value  = google_iam_workload_identity_pool_provider.github_actions.name
 }
 
-// Provide access to Cloud Run domain mapping
-resource "google_cloud_run_service_iam_member" "cloud_run" {
-  location = google_cloud_run_v2_service.ui.location
+# Need to have Project > Editor for domain mappings
+# https://cloud.google.com/run/docs/reference/iam/roles
+resource "google_project_iam_member" "cloud_run" {
   project  = google_cloud_run_v2_service.ui.project
-  service  = google_cloud_run_v2_service.ui.name
-  role     = "roles/run.developer"
+  role     = "roles/editor"
   member   = local.infra_principal
 }
