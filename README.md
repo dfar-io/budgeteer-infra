@@ -13,12 +13,6 @@ Infrastructure components for Budgeteer budgeting application.
 terraform apply
 ```
 
-## Notes
-
-Setting up Cloud Run custom domain requires a certificate provision, which requires DNS records to be created.
-Might need to make DNS entries before provisioning infrastructure. Once created, it takes ~15 minutes to automatically
-provision certificates.
-
 ## Troubleshooting
 
 Authentication issues when running `tfplan`: check if PAT is expired.
