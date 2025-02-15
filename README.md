@@ -12,3 +12,7 @@ Infrastructure components for Budgeteer budgeting application.
 . ./init.sh
 terraform apply
 ```
+
+## Troubleshooting
+
+Authentication issues when running `tfplan`: check if PAT is expired.
