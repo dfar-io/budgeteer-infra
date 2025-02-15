@@ -19,16 +19,8 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
-      name: Checkout source code
-
     - uses: terraform-linters/setup-tflint@v4
-      name: Setup TFLint
-
-    - name: Show version
-      run: tflint --version
-
-    - name: Init TFLint
-      run: tflint --init
+    - run: tflint --init
       env:
         # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
         GITHUB_TOKEN: ${{ github.token }}
@@ -43,6 +35,8 @@ jobs:
       uses: 'google-github-actions/auth@v2'
       with:
         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+        # do we need this for cloud run domain mappings?
+        export_environment_variables: true
 
     - run: terraform init
 
