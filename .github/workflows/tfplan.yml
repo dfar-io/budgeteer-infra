@@ -39,12 +39,9 @@ jobs:
         export_environment_variables: true
 
     - run: terraform init
-
-    - name: Terraform Validate
-      run: terraform validate -no-color
-
+    - run: terraform validate -no-color
     - name: Terraform Plan
       run: terraform plan -detailed-exitcode
       env:
-        # manual token with repo rights
+        # manual token with repo rights to allow GitHub secrets to be checked
         GITHUB_TOKEN: ${{ secrets.PAT }}
