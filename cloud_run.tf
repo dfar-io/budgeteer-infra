@@ -1,7 +1,7 @@
 resource "google_cloud_run_v2_service" "ui" {
   name     = "ui"
   project  = google_project.project.project_id
-  location = "us-east4"
+  location = local.location
 
   template {
     containers {
@@ -13,7 +13,7 @@ resource "google_cloud_run_v2_service" "ui" {
 }
 
 resource "google_cloud_run_domain_mapping" "ui" {
-  location = "us-east4"
+  location = local.location
   project  = google_project.project.project_id
   name     = "bc.dfar.io"
 
@@ -34,7 +34,7 @@ data "google_iam_policy" "all_users" {
 }
 
 resource "google_cloud_run_service_iam_policy" "public" {
-    location = "us-east4"
+    location = local.location
     project  = google_project.project.project_id
     service  = google_cloud_run_v2_service.ui.name
 

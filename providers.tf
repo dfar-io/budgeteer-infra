@@ -1,8 +1,11 @@
 # https://cloud.google.com/docs/terraform/resource-management/store-state
 
+locals {
+    location = "us-east4"
+}
 
 provider "google" {
-    region  = "us-east4"
+    region  = local.location
 }
 
 provider "github" {
