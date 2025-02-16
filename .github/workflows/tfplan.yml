@@ -35,7 +35,7 @@ jobs:
       uses: 'google-github-actions/auth@v2'
       with:
         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-        service-account: ${{ secrets.GITHUB_SA }}
+        service_account: ${{ secrets.GITHUB_SA }}
 
     - run: terraform init
     - run: terraform validate -no-color
