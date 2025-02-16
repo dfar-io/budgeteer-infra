@@ -50,6 +50,13 @@ resource "google_iam_workload_identity_pool_provider" "github_actions" {
   }
 }
 
+# SA for performing TF actions within GitHub
+resource "google_service_account" "github_sa" {
+  account_id   = "github"
+  project      = google_project.project.project_id
+  display_name = "GitHub Service Account"
+}
+
 # prefer this but I get
 # Error: GET https://api.github.com/orgs/dfar-io/actions/secrets/public-key: 404 Not Found []
 #

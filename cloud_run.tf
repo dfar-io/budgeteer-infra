@@ -11,7 +11,21 @@ resource "google_cloud_run_v2_service" "ui" {
     }
   }
 
-  depends_on = [google_project_service.cloud_run_admin]
+  depends_on = [google_project_service.cloud_run]
+}
+
+resource "google_cloud_run_domain_mapping" "default" {
+  location = local.location
+  project  = google_project.project.project_id
+  name     = "bc.dfar.io"
+
+  metadata {
+    namespace = google_project.project.project_id
+  }
+
+  spec {
+    route_name = google_cloud_run_v2_service.ui.name
+  }
 }
 
 resource "google_cloud_run_service_iam_member" "public_access" {
@@ -22,7 +36,7 @@ resource "google_cloud_run_service_iam_member" "public_access" {
   member   = "allUsers"
 }
 
-resource "google_project_service" "cloud_run_admin" {
+resource "google_project_service" "cloud_run" {
   project = google_project.project.project_id
   service = "run.googleapis.com"
 }
