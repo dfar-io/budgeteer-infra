@@ -1,5 +1,5 @@
 locals {
-  infra_principal = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra"
+  #infra_principal = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions.name}/attribute.repository/dfar-io/budgeteer-infra"
   github_sa = "serviceAccount:${google_service_account.github_sa.email}"
 }
 
