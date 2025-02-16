@@ -34,8 +34,8 @@ jobs:
     - name: "Authenticate to GCP for terraform commands"
       uses: 'google-github-actions/auth@v2'
       with:
+        service_account: ${{ secrets.GH_SERVICE_ACCOUNT }}
         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-        service_account: ${{ secrets.GITHUB_SA }}
 
     - run: terraform init
     - run: terraform validate -no-color
