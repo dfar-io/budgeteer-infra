@@ -8,6 +8,12 @@ provider "google" {
     region  = local.location
 }
 
+# allows for firebase
+# https://firebase.google.com/docs/projects/terraform/get-started
+provider "google-beta" {
+    user_project_override = true
+}
+
 provider "github" {
     # needed for org secret
     owner =  "dfar-io"
@@ -31,6 +37,10 @@ terraform {
         null = {
             source  = "hashicorp/null"
             version = "~> 3.2.3"
+        }
+        google-beta = {
+            source = "hashicorp/google-beta"
+            version = "~> 6.20.0"
         }
     }
     backend "gcs" {

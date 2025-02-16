@@ -13,4 +13,9 @@ resource "google_project" "project" {
   deletion_policy = "DELETE"
   # Allow billing using default billing account
   billing_account = data.google_billing_account.acct.id
+
+  # Required for the project to display in any list of Firebase projects.
+  labels = {
+    "firebase" = "enabled"
+  }
 }

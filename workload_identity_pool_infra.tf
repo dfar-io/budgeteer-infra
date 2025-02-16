@@ -41,6 +41,7 @@ resource "google_project_service" "resource_manager" {
 resource "google_project_service" "service_usage" {
   project = google_project.project.project_id
   service = "serviceusage.googleapis.com"
+  disable_dependent_services = true
 }
 
 resource "google_project_service" "iam" {
