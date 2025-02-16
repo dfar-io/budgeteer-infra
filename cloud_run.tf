@@ -14,12 +14,28 @@ resource "google_cloud_run_v2_service" "ui" {
   depends_on = [google_project_service.cloud_run_admin]
 }
 
+resource "google_cloud_run_domain_mapping" "ui" {
+  location = local.location
+  project  = google_project.project.project_id
+  name     = "bc.dfar.io"
+
+  metadata {
+    namespace = google_project.project.project_id
+  }
+
+  spec {
+    route_name = google_cloud_run_v2_service.ui.name
+  }
+}
+
 resource "google_cloud_run_service_iam_member" "public_access" {
   location = google_cloud_run_v2_service.ui.location
   project  = google_cloud_run_v2_service.ui.project
   service  = google_cloud_run_v2_service.ui.name
   role     = "roles/run.invoker"
   member   = "allUsers"
+
+  depends_on = [google_project_service.cloud_run_admin]
 }
 
 resource "google_project_service" "cloud_run_admin" {
