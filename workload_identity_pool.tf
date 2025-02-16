@@ -54,7 +54,7 @@ resource "google_iam_workload_identity_pool_provider" "github_actions" {
 resource "google_service_account" "github_sa" {
   account_id   = "github"
   project      = google_project.project.project_id
-  display_name = "GitHub Service Account"
+  display_name = "GitHub service account"
 }
 
 # prefer this but I get
