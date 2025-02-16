@@ -10,30 +10,23 @@ resource "google_storage_bucket_iam_member" "storage_access_infra" {
   member = local.github_sa
 }
 
-resource "google_storage_bucket_iam_member" "storage_access_infra_principal" {
-  # need to use state bucket in different project
-  bucket = "budgeteer-tf-state"
-  role   = "roles/storage.legacyBucketOwner"
-  member = local.infra_principal
-}
-
 # try using editor to access org IAM info
 resource "google_organization_iam_member" "editor_infra" {
   org_id  = local.org_id
   role    = "roles/editor"
-  member  = local.infra_principal
+  member  = local.github_sa
 }
 resource "google_organization_iam_member" "billing_viewer_infra" {
   org_id  = local.org_id
   role    = "roles/billing.viewer"
-  member  = local.infra_principal
+  member  = local.github_sa
 }
 # Need this to view IAM roles for organization
 # https://github.com/terraform-google-modules/terraform-example-foundation/issues/558
 resource "google_organization_iam_member" "security_reviewer_infra" {
   org_id  = local.org_id
   role    = "roles/iam.securityReviewer"
-  member  = local.infra_principal
+  member  = local.github_sa
 }
 
 resource "google_project_service" "billing" {
