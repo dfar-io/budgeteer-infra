@@ -10,6 +10,13 @@ resource "google_storage_bucket_iam_member" "storage_access_infra" {
   member = local.github_sa
 }
 
+resource "google_storage_bucket_iam_member" "storage_access_infra_principal" {
+  # need to use state bucket in different project
+  bucket = "budgeteer-tf-state"
+  role   = "roles/storage.legacyBucketOwner"
+  member = local.infra_principal
+}
+
 # try using editor to access org IAM info
 resource "google_organization_iam_member" "editor_infra" {
   org_id  = local.org_id
