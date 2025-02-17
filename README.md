@@ -4,9 +4,14 @@
 
 Infrastructure components for Budgeteer budgeting application.
 
+## Notes for myself
+
+- I'm currently unable to authenticate for the service principal when using only a Cloud Run Domain Mapping. Just
+setting it up so the URL redirects instead.
+
 ## Pre-reqs
 
-1. Create a storage bucket in another GCP project that will serve as Terraform state. 
+1. Create a storage bucket in another GCP project that will serve as Terraform state.
 
 ## Getting Started
 
