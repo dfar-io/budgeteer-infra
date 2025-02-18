@@ -1,3 +1,7 @@
+locals {
+  project_id = google_project.project.project_id
+}
+
 resource "random_string" "project-prefix" {
   length = 5
   special = false
