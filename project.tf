@@ -18,3 +18,15 @@ resource "google_project" "project" {
   # Allow billing using default billing account
   billing_account = data.google_billing_account.acct.id
 }
+
+resource github_actions_secret ui_project_id {
+  repository       = "budgeteer-ui"
+  secret_name      = "PROJECT_ID"
+  plaintext_value  = google_project.project.project_id
+}
+
+resource github_dependabot_secret ui_project_id {
+  repository       = "budgeteer-ui"
+  secret_name      = "PROJECT_ID"
+  plaintext_value  = google_project.project.project_id
+}
