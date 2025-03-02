@@ -1,4 +1,4 @@
-![TFLint](https://github.com/dfar-io/budgeteer-infra/actions/workflows/tflint.yml/badge.svg)
+![TFLint](https://github.com/dfar-io/budgeteer-infra/actions/workflows/tfplan.yml/badge.svg)
 
 # budgeteer-infra
 
