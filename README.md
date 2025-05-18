@@ -24,7 +24,13 @@ terraform apply
 
 ## Troubleshooting
 
-Provider produced inconsistent final plan: try running again, this happens on an
+```
+Provider produced inconsistent final plan
+```
+Try running again, this happens on an
 initial provision because of Cloud Run domain mappings.
 
-Authentication issues when running `tfplan`: check if PAT is expired.
+```
+401 Bad credentials []
+```
+Check if PAT is expired.
