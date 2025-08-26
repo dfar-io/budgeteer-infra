@@ -18,8 +18,8 @@ jobs:
       id-token: 'write'
     runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v4
-    - uses: terraform-linters/setup-tflint@v4
+    - uses: actions/checkout@v5
+    - uses: terraform-linters/setup-tflint@v5
     - run: tflint --init
       env:
         # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
