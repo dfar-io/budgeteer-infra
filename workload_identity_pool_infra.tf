@@ -53,3 +53,9 @@ resource "github_actions_secret" "workload_identity_pool_provider_name_budgeteer
   secret_name      = "WORKLOAD_IDENTITY_PROVIDER"
   plaintext_value  = google_iam_workload_identity_pool_provider.github_actions.name
 }
+
+resource "github_dependabot_secret" "workload_identity_pool_provider_name_budgeteer_infra" {
+  repository       = "budgeteer-infra"
+  secret_name      = "WORKLOAD_IDENTITY_PROVIDER"
+  plaintext_value  = google_iam_workload_identity_pool_provider.github_actions.name
+}
